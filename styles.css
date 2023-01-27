@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .my-bg-register-image {
+    background: url("img/worker.jpg") ; 
+    background-position: center;
+    background-size: cover;
+  }
+
+  .bg-password-image{
+    background: url("img/worker.jpg") ; 
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .my-dropdown-menu-right {
+    right: 0;
+  }
+
+  .my-small {
+    font-size: 110%;
+  }
+
+  .username {
+    margin-top: 50 !important;
+  }
+
+  #playerUserName{
+    padding-top: 15px;
+  }
+
+  .card{
+    height: 90% !important;
+  }
