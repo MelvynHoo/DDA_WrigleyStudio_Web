@@ -64,14 +64,14 @@ SignInUser.addEventListener("submit", function (e) {
       console.log("login update")
   
       update(ref(db, "playerStats/" + uid),{
-        active: true
+        status: true
       });
-      update(ref(db, "leaderboards/" + uid),{
-        active: true
+      update(ref(db, "leaderBoards/" + uid),{
+        status: true
       });
 
       update(ref(db, "players/" + uid),{
-        active: true
+        status: true
       });
       setTimeout(() => {window.location.href="index.html"}, 1000);
       

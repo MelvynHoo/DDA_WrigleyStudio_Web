@@ -62,28 +62,44 @@ function createUser(email, password, displayname) {
     // create the database in the website
     var currentTimestamp = new Date().getTime();
     var playerData = {
-      active: true,
+      status: true,
       createdOn: currentTimestamp,
       email: email,
       lastLoggedIn: currentTimestamp,
       updatedOn: currentTimestamp,
       userName: displayname,
+      gender: "male",
+      age: 0,
     };
     var playerStats = {
       createdOn: currentTimestamp,
-      active: true,
-      noOfMoneyEarned: 0,
-      noOfboxDelivered: 0,
+      status: true,
+      totalScore: 0,
+      totalStar: 0,
       updatedOn: currentTimestamp,
       userName: displayname,
     };
-    var leaderboard = {
-      noOfMoneyEarned: 0,
-      noOfboxDelivered: 0,
-      active: true,
+    var leaderBoards = {
+      totalScore: 0,
+      totalStar: 0,
+      status: true,
       updatedOn: currentTimestamp,
       userName: displayname,
     };
+    var gameLevels = {
+      levelOneScore: 0,
+      levelOneStar: 0,
+      levelOneCompletion: false,
+      levelTwoScore: 0,
+      levelTwoStar: 0,
+      levelTwoCompletion: false,
+      levelThreeScore: 0,
+      levelThreeStar: 0,
+      levelThreeCompletion: false,
+      totalScore: 0,
+      totalStar: 0,
+      allLevelComplete: false,
+    }
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -92,7 +108,8 @@ function createUser(email, password, displayname) {
         console.log("The UID: " + uid)
         set(ref(db, `players/${uid}`), playerData);
         set(ref(db, `playerStats/${uid}`), playerStats);
-        set(ref(db, `leaderboards/${uid}`), leaderboard);
+        set(ref(db, `leaderBoards/${uid}`), leaderBoards);
+        set(ref(db, `gameLevels/${uid}`), gameLevels);
       } else {
         // User is signed out
         // ...

@@ -20,7 +20,7 @@ const db = getDatabase();
 //Working with Auth
 const auth = getAuth();
 const user = auth.CurrentUser;
-const leaderboard = ref(db, "leaderboards");
+const leaderboard = ref(db, "leaderBoards");
 const players = ref(db,"players")
 
 

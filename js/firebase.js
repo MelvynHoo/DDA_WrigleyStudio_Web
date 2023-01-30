@@ -29,7 +29,7 @@ const auth = getAuth();
 const user = auth.CurrentUser;
 const playerRef = ref(db, "players");
 const playerStats = ref(db, "playerStats");
-const leaderboard = ref(db, "leaderboards");
+const leaderboard = ref(db, "leaderBoards");
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
@@ -47,12 +47,12 @@ function UpdatePlayerStats(){
   console.log("Deleting you statistic")
 
   update(ref(db, "playerStats/" + myData),{
-      noOfMoneyEarned: 0,
-      noOfboxDelivered: 0
+      //noOfMoneyEarned: 0,
+      //noOfboxDelivered: 0
   });
-  update(ref(db, "leaderboards/" + myData),{
-    noOfMoneyEarned: 0,
-    noOfboxDelivered: 0
+  update(ref(db, "leaderBoards/" + myData),{
+    //noOfMoneyEarned: 0,
+    //noOfboxDelivered: 0
   });
   setTimeout(() => {window.location.href="index.html"}, 1000);
 }
@@ -165,9 +165,9 @@ function getPlayerData() {
 
             ////active status
 
-            console.log(`my status: ${childSnapshot.child("active").val()}`);
+            console.log(`my status: ${childSnapshot.child("status").val()}`);
             var status = "Offline";
-            if(childSnapshot.child("active").val() == true){
+            if(childSnapshot.child("status").val() == true){
               status = 'Online'
             }
             else{
@@ -228,14 +228,14 @@ let logout = document.getElementById("LogOutBTN");
 logout.addEventListener("click",  LogOut);
 function LogOut(){
   update(ref(db, "playerStats/" + myData),{
-    active: false
+    status: false
   });
-  update(ref(db, "leaderboards/" + myData),{
-    active: false
+  update(ref(db, "leaderBoards/" + myData),{
+    status: false
   });
 
   update(ref(db, "players/" + myData),{
-    active: false
+    status: false
   });
   sessionStorage.clear();
   setTimeout(() => {window.location.href="login.html"}, 1000);
