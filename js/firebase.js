@@ -111,11 +111,11 @@ function getPlayerData() {
         var playerName = document.getElementById("playerStatsUserName");
         var playerNamecontent = "";
 
-        var highestScore = document.getElementById("noOfboxDelivered");
-        var highestScorecontent = "";
+        var playerStatsTotalScore = document.getElementById("playerStatsTotalScore");
+        var playerStatsTotalScoreContent = "";
 
-        var boxesDelivered = document.getElementById("noOfMoneyEarned");
-        var boxesDeliveredcontent = "";
+        var playerStatsTotalStar = document.getElementById("playerStatsTotalStar");
+        var playerStatsTotalStarContent = "";
 
         var myStatus = document.getElementById("yourStatus");
         var myStatusContent ="";
@@ -148,8 +148,8 @@ function getPlayerData() {
             console.log(`no. boxes delivered found: ${childSnapshot.child("noOfboxDelivered").val()}`);
 
             //adding data into 'content'
-            boxesDeliveredcontent += `<td id="noOfboxDelivered">
-            ${childSnapshot.child("noOfboxDelivered").val()}
+            playerStatsTotalScoreContent += `<td id="playerStatsTotalScore">
+            ${childSnapshot.child("totalScore").val()}
             </td>`;
             
             //update our table content
@@ -159,8 +159,8 @@ function getPlayerData() {
             console.log(`highest money earned found: ${childSnapshot.child("noOfMoneyEarned").val()}`);
             
             //adding data into 'content'
-            highestScorecontent+= `<td id="noOfMoneyEarned">
-            $${childSnapshot.child("noOfMoneyEarned").val()}
+            playerStatsTotalStarContent += `<td id="playerStatsTotalStar">
+            ${childSnapshot.child("totalStar").val()}
             </td>`;
 
             ////active status
@@ -181,8 +181,8 @@ function getPlayerData() {
         });
         //update our table content
         playerName.innerHTML = playerNamecontent;
-        highestScore.innerHTML = highestScorecontent;
-        boxesDelivered.innerHTML = boxesDeliveredcontent;
+        playerStatsTotalScore.innerHTML = playerStatsTotalScoreContent;
+        playerStatsTotalStar.innerHTML = playerStatsTotalStarContent;
         myStatus.innerHTML = myStatusContent;
   
         
@@ -227,16 +227,24 @@ function GetCurrentUser(){
 let logout = document.getElementById("LogOutBTN");
 logout.addEventListener("click",  LogOut);
 function LogOut(){
-  update(ref(db, "playerStats/" + myData),{
-    status: false
-  });
-  update(ref(db, "leaderBoards/" + myData),{
-    status: false
-  });
+  if (myData == null)
+  {
+    sessionStorage.clear();
+  }
+  if (myData != null)
+  {
 
-  update(ref(db, "players/" + myData),{
-    status: false
-  });
+    update(ref(db, "playerStats/" + myData),{
+      status: false
+    });
+    update(ref(db, "leaderBoards/" + myData),{
+      status: false
+    });
+  
+    update(ref(db, "players/" + myData),{
+      status: false
+    });
+  }
   sessionStorage.clear();
   setTimeout(() => {window.location.href="login.html"}, 1000);
 }

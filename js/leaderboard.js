@@ -34,7 +34,7 @@ var limit = 10;
   function getLB(limit = 10){
      //q = get(leaderboard).then(orderByChild("noOfMoneyEarned"));
      // Sort the leaderboard
-    const que = query(ref(db,"leaderboards"),orderByChild("noOfMoneyEarned"),limitToLast(limit))
+    const que = query(ref(db,"leaderBoards"),orderByChild("totalScore"),limitToLast(limit))
     
     //get the sorted leaderboard
     get(que).then((snapshot) => { //retrieve a snapshot of the data using a callback
@@ -55,10 +55,10 @@ var limit = 10;
           //console.log(`username of players found: ${item.noOfMoneyEarned}`);
           var status = "Offline";
           var username = "Unable to retrieved player name";
-          var moneyEarned = "0";
-          var boxedDelivered = "0";
+          var totalScore = "0";
+          var totalStar = "0";
 
-          if(item.active == true){
+          if(item.status == true){
             status = '<td style="color:green;">Online</td>'
           }
           else{
@@ -72,18 +72,19 @@ var limit = 10;
             username = item.userName;
           }
 
-          if(item.noOfMoneyEarned == null){
-            moneyEarned = "0";
+          if(item.totalScore == null){
+            totalScore = "0";
           }
           else{
-            moneyEarned = item.noOfMoneyEarned;
+            totalScore = item.totalScore;
           }
 
-          if(item.noOfboxDelivered == null){
-            boxedDelivered = "0";
+          if(item.totalStar == null){
+            totalStar = "0";
           }
           else{
-            boxedDelivered = item.noOfboxDelivered;
+            totalStar = item.totalStar;
+            console.log("What the total star :" + totalStar);
           }
 
           content += `
@@ -91,9 +92,9 @@ var limit = 10;
           <tr>
           <td>${i++}</td>
           <td>${username}</td>
+          <td>${totalScore}</td>
+          <td>${totalStar}</td>
           ${status}
-          <td>$${moneyEarned}</td>
-          <td>${boxedDelivered}</td>
           </tr>
           `
         });

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Packing Sim - Dashboard</title>
+    <title>Red Alert - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@
                                 
                                 <a class="my-dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logoutsd
+                                    Logout
                                 </a>
                             </div>
                         </ui>    
@@ -70,7 +70,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold;">Your Dashboard</h1>
                         <br>
-                        <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold;">Packing Simulator</h1>
+                        <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold;">Red Alert</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -83,8 +83,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Overall Total Boxes Delivered</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="overAllBoxesDelivered">0</p></div>
+                                                Total Overall Score</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="overAllScore">0</p></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -101,8 +101,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Overall Total Money Earned</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  id="overAllMoneyEarned">$0</div>
+                                                Total Overall Star</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  id="overAllStar">0</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -190,9 +190,9 @@
                                             <tr>
                                                 <th>Ranking</th>
                                                 <th>Name</th>
+                                                <th>Total Score</th>
+                                                <th>Total Star</th>
                                                 <th>Status</th>
-                                                <th>Money Earned</th>
-                                                <th>Boxes Delivered</th>
                                             </tr>
 
                                           </table>
@@ -239,13 +239,13 @@
                                             </tr>
 
                                             <tr>
-                                              <th class="statsData">Total Money Earned:</th>
-                                              <td id="noOfboxDelivered">$0</td>
+                                              <th class="statsData">Total Score:</th>
+                                              <td id="playerStatsTotalScore">$0</td>
                                             </tr>
 
                                             <tr>
-                                              <th>Total Boxes Delivered:</th>
-                                              <td id="noOfMoneyEarned">0</td>
+                                              <th>Total Star:</th>
+                                              <td id="playerStatsTotalStar">0</td>
                                             </tr>
 
                                             <tr>

@@ -54,7 +54,7 @@ function getDashBoard(){
             <p>${totalRegisteredUser}</p>
             `   
             userList.forEach((item) => {
-            if(item.active == true)
+            if(item.status == true)
             {
                 totalActiveUser++
                 noOfActiveUserContent = `
@@ -78,46 +78,46 @@ function getDashBoard(){
             dashBoardList.push(childSnapshot.val());                   
         });
 
-        var overAllBoxesDelivered = document.getElementById("overAllBoxesDelivered");
-        var overAllBoxesDeliveredContent = "";
-        var overAllMoneyEarned = document.getElementById("overAllMoneyEarned");
-        var overAllMoneyEarnedContent = "";
+        var overAllScore = document.getElementById("overAllScore");
+        var overAllScoreContent = "";
+        var overAllStar = document.getElementById("overAllStar");
+        var overAllStarContent = "";
         dashBoardList.reverse()
         console.log(dashBoardList);
 
-        var totalBox = 0;
-        var totalMoney = 0;
+        var totalStar = 0;
+        var totalScore = 0;
 
         dashBoardList.forEach((item) => {
           //console.log(`username of players found: ${item.noOfMoneyEarned}`);
-          if (item.noOfboxDelivered == null)
+          if (item.totalStar == null)
           {
-            totalBox += 0;
+            totalStar += 0;
           }
           else
           {
-            totalBox += item.noOfboxDelivered;
+            totalStar += item.totalStar;
           }
 
-          if (item.noOfMoneyEarned == null)
+          if (item.totalScore == null)
           {
-            totalMoney += 0;
+            totalScore += 0;
           }
           else
           {
-            totalMoney += item.noOfMoneyEarned;
+            totalScore += item.totalScore;
           }
             //totalRegisteredUser = dashBoardList.length;
             
-            overAllBoxesDeliveredContent = `
-            <p>${totalBox}</p>
+            overAllStarContent = `
+            <p>${totalStar}</p>
             `
-            overAllMoneyEarnedContent = `
-            <p>$${totalMoney}</p>
+            overAllScoreContent = `
+            <p>${totalScore}</p>
             `
         });
-        overAllBoxesDelivered.innerHTML = overAllBoxesDeliveredContent;
-        overAllMoneyEarned.innerHTML = overAllMoneyEarnedContent;
+        overAllStar.innerHTML = overAllStarContent;
+        overAllScore.innerHTML = overAllScoreContent;
       }
       else {
         //@TODO what if no data ?

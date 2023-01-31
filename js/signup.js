@@ -74,31 +74,34 @@ function createUser(email, password, displayname) {
     var playerStats = {
       createdOn: currentTimestamp,
       status: true,
-      totalScore: 0,
-      totalStar: 0,
+      totalScore: 150, // change value for testing
+      totalStar: 4, // change value for testing
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var leaderBoards = {
-      totalScore: 0,
-      totalStar: 0,
+      totalScore: 150, // change value for testing
+      totalStar: 4, // change value for testing
       status: true,
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var gameLevels = {
-      levelOneScore: 0,
-      levelOneStar: 0,
-      levelOneCompletion: false,
-      levelTwoScore: 0,
-      levelTwoStar: 0,
-      levelTwoCompletion: false,
-      levelThreeScore: 0,
-      levelThreeStar: 0,
-      levelThreeCompletion: false,
-      totalScore: 0,
-      totalStar: 0,
-      allLevelComplete: false,
+      userName: displayname,
+      levelOneScore: 50, // change value for testing
+      levelOneStar: 1, // change value for testing
+      levelOneCompletion: true, // change value for testing
+      levelTwoScore: 80, // change value for testing
+      levelTwoStar: 3, // change value for testing
+      levelTwoCompletion: true, // change value for testing
+      levelThreeScore: 20, // change value for testing
+      levelThreeStar: 0, // change value for testing
+      levelThreeInjuredSaved: 2, // change value for testing
+      levelThreeObjectiveComplete: false, // change value for testing
+      levelThreeCompletion: false, // change value for testing
+      totalScore: 150, // change value for testing
+      totalStar: 4, // change value for testing
+      allLevelComplete: false, // change value for testing
     }
     onAuthStateChanged(auth, (user) => {
       if (user) {
