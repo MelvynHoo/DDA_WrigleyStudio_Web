@@ -1,36 +1,38 @@
-html, body {
-    height: 100%;
-    width: 100%;
-  }
-  
-  .my-bg-register-image {
-    background: url("img/worker.jpg") ; 
-    background-position: center;
-    background-size: cover;
-  }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
-  .bg-password-image{
-    background: url("img/worker.jpg") ; 
-    background-position: center;
-    background-size: cover;
-  }
-  
-  .my-dropdown-menu-right {
-    right: 0;
-  }
+.my-bg-register-image {
+  background: url("img/Game\ Studio\ Logo.png");
+  background-position: center;
+  margin-bottom: 150;
+  background-size: cover;
+}
 
-  .my-small {
-    font-size: 110%;
-  }
+.bg-password-image {
+  background: url("img/Game\ Studio\ Logo.png");
+  background-position: center;
+  background-size: cover;
+}
 
-  .username {
-    margin-top: 50 !important;
-  }
+.my-dropdown-menu-right {
+  right: 0;
+}
 
-  #playerUserName{
-    padding-top: 15px;
-  }
+.my-small {
+  font-size: 110%;
+}
 
-  .card{
-    height: 90% !important;
-  }
+.username {
+  margin-top: 50 !important;
+}
+
+#playerUserName {
+  padding-top: 15px;
+}
+
+.card {
+  height: 90% !important;
+}
