@@ -29,3 +29,5 @@ var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in dashboard: " + myData);
 
 //window.location.reload()
+
+//onValue()
