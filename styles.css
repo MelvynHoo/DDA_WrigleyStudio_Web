@@ -7,14 +7,54 @@ body {
 .my-bg-register-image {
   background: url("img/Game\ Studio\ Logo.png");
   background-position: center;
-  margin-bottom: 150;
+  margin-top: 0px !important; 
   background-size: cover;
+}
+
+.my-bg-login-image {
+  background: url("img/Game\ Studio\ Logo.png");
+  background-position: center;
+  margin-top: 0px !important; 
+  background-size: cover;
+  
 }
 
 .bg-password-image {
   background: url("img/Game\ Studio\ Logo.png");
   background-position: center;
   background-size: cover;
+
+}
+
+.my-card-body {
+  background-color: rgb(0, 0, 0) !important;
+  
+}
+
+.my-card-body-login{
+  padding-top: 15%;
+  height: 615px;
+}
+
+.my-card-body-register{
+  padding-top: 7.5%;
+}
+
+.my-card-body-forgetpw{
+  padding-top: 15%;
+  height: 635px;
+}
+
+.my-title-font{
+  color: whitesmoke !important;
+}
+
+.my-text-font{
+  color: whitesmoke !important;
+}
+
+.my-btn-color-one{
+  background-color: rgb(0, 109, 0) !important;
 }
 
 .my-dropdown-menu-right {
@@ -35,4 +75,10 @@ body {
 
 .card {
   height: 90% !important;
+}
+
+.my-bg-login{
+  background-color: #0f0566 !important;
+  background-image: linear-gradient(180deg, #2112a7 10%, #0f0566 100%);
+  background-size: cover;
 }
