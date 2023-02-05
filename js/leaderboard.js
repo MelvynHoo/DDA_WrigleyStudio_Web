@@ -48,7 +48,7 @@ var limit = 10;
         var leaderBoardData = document.getElementById("leaderBoardData");
         var content = "";
         lbList.reverse()
-        console.log(lbList);
+        //console.log(lbList);
 
         var i = 1;
         lbList.forEach((item) => {
@@ -84,7 +84,7 @@ var limit = 10;
           }
           else{
             totalStar = item.totalStar;
-            console.log("What the total star :" + totalStar);
+            //console.log("What the total star :" + totalStar);
           }
 
           content += `

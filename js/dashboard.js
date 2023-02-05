@@ -45,7 +45,7 @@ function getDashBoard(){
             var noRegisterUserContent = "";
             
             userList.reverse()
-             console.log(userList);
+            //console.log(userList);
   
             var totalActiveUser = 0;
             var totalRegisteredUser = 0;
@@ -83,7 +83,7 @@ function getDashBoard(){
         var overAllStar = document.getElementById("overAllStar");
         var overAllStarContent = "";
         dashBoardList.reverse()
-        console.log(dashBoardList);
+        //console.log(dashBoardList);
 
         var totalStar = 0;
         var totalScore = 0;
