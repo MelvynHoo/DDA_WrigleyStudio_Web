@@ -62,7 +62,7 @@ function createUser(email, password, displayname) {
     // create the database in the website
     var currentTimestamp = new Date().getTime();
     var playerData = {
-      status: true,
+      status: false,
       createdOn: currentTimestamp,
       email: email,
       lastLoggedIn: currentTimestamp,
@@ -73,34 +73,34 @@ function createUser(email, password, displayname) {
     };
     var playerStats = {
       createdOn: currentTimestamp,
-      status: true,
-      totalScore: 150, // change value for testing
-      totalStar: 4, // change value for testing
+      status: false,
+      totalScore: 460, // change value for testing
+      totalStar: 3, // change value for testing
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var leaderBoards = {
-      totalScore: 150, // change value for testing
-      totalStar: 4, // change value for testing
-      status: true,
+      totalScore: 460, // change value for testing
+      totalStar: 3, // change value for testing
+      status: false,
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var gameLevels = {
       userName: displayname,
-      levelOneScore: 50, // change value for testing
-      levelOneStar: 1, // change value for testing
+      levelOneScore: 460, // change value for testing
+      levelOneStar: 3, // change value for testing
+      levelTwoScore: 0, // change value for testing
+      levelTwoStar: 0, // change value for testing
+      levelTwoInjuredSaved: 0, // change value for testing
+      levelTwoObjectiveComplete: false, // change value for testing
+      totalScore: 460, // change value for testing
+      totalStar: 3, // change value for testing
+    }
+    var gameCompletion = {
+      userName: displayname,
       levelOneCompletion: true, // change value for testing
-      levelTwoScore: 80, // change value for testing
-      levelTwoStar: 3, // change value for testing
-      levelTwoCompletion: true, // change value for testing
-      levelThreeScore: 20, // change value for testing
-      levelThreeStar: 0, // change value for testing
-      levelThreeInjuredSaved: 2, // change value for testing
-      levelThreeObjectiveComplete: false, // change value for testing
-      levelThreeCompletion: false, // change value for testing
-      totalScore: 150, // change value for testing
-      totalStar: 4, // change value for testing
+      levelTwoCompletion: false, // change value for testing
       allLevelComplete: false, // change value for testing
     }
     onAuthStateChanged(auth, (user) => {
@@ -113,6 +113,7 @@ function createUser(email, password, displayname) {
         set(ref(db, `playerStats/${uid}`), playerStats);
         set(ref(db, `leaderBoards/${uid}`), leaderBoards);
         set(ref(db, `gameLevels/${uid}`), gameLevels);
+        set(ref(db, `gameCompletion/${uid}`), gameCompletion);
       } else {
         // User is signed out
         // ...
