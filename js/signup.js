@@ -48,7 +48,7 @@ CreateUser.addEventListener("submit", function (e) {
 //user will get signed in
 //userCredential is an object that gets
 function createUser(email, password, displayname) {
-  console.log("creating the user");
+  console.log("Creating the user");
 
   
 
@@ -57,8 +57,8 @@ function createUser(email, password, displayname) {
       //signedin
       //const user = userCredential.user;
       const user = userCredential.user;
-      console.log("created user ... " + JSON.stringify(userCredential));
-      console.log("User is now signed in ");
+      //console.log("created user ... " + JSON.stringify(userCredential));
+      console.log("User has been created ");
 
       
       //update display name
@@ -81,32 +81,32 @@ function createUser(email, password, displayname) {
     var playerStats = {
       createdOn: currentTimestamp,
       status: false,
-      totalScore: 460, // change value for testing
-      totalStar: 3, // change value for testing
+      totalScore: 0, // change value for testing
+      totalStar: 0, // change value for testing
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var leaderBoards = {
-      totalScore: 460, // change value for testing
-      totalStar: 3, // change value for testing
+      totalScore: 0, // change value for testing
+      totalStar: 0, // change value for testing
       status: false,
       updatedOn: currentTimestamp,
       userName: displayname,
     };
     var gameLevels = {
       userName: displayname,
-      levelOneScore: 460, // change value for testing
-      levelOneStar: 3, // change value for testing
+      levelOneScore: 0, // change value for testing
+      levelOneStar: 0, // change value for testing
       levelTwoScore: 0, // change value for testing
       levelTwoStar: 0, // change value for testing
       levelTwoInjuredSaved: 0, // change value for testing
       levelTwoObjectiveComplete: false, // change value for testing
-      totalScore: 460, // change value for testing
-      totalStar: 3, // change value for testing
+      totalScore: 0, // change value for testing
+      totalStar: 0, // change value for testing
     }
     var gameCompletion = {
       userName: displayname,
-      levelOneCompletion: true, // change value for testing
+      levelOneCompletion: false, // change value for testing
       levelTwoCompletion: false, // change value for testing
       allLevelComplete: false, // change value for testing
     }
@@ -128,8 +128,8 @@ function createUser(email, password, displayname) {
         }).then(() => {
           const authUser = auth.currentUser;
           const displayNameAuth = authUser.displayName;
-          console.log("Checking auth user:" + displayNameAuth);
-          alert(typeof displayname) // displays "string"
+          console.log("Checking Auth User: " + displayNameAuth);
+          //alert(typeof displayname) // displays "string"
         }).catch((error) => {
           // An error occurred
           // ...

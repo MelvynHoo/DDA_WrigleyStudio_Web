@@ -43,7 +43,7 @@ SignInUser.addEventListener("submit", function (e) {
   });
   
   function signInUser(email, password){
-    console.log("Sign in user...")
+    console.log("Sign in user in progress...")
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     //var displayname = document.getElementById("username").value;
@@ -60,9 +60,9 @@ SignInUser.addEventListener("submit", function (e) {
       
       const authUser = auth.currentUser;
       const displayNameAuth = authUser.displayName;
-      console.log("Checking display user:" + displayNameAuth);
+      console.log("Checking Auth User: " + displayNameAuth);
       //console.log("Checking auth user:" + currentUser);
-      alert(typeof displayNameAuth)
+      //alert(typeof displayNameAuth)
       
       /*
       updateProfile(auth.currentUser, {
@@ -80,15 +80,11 @@ SignInUser.addEventListener("submit", function (e) {
       });
       */
       sessionStorage.setItem("UUID", uid);
-      console.log("The user uid" + uid);
+      console.log("The user UUID: " + uid);
       
       //console.log("logging in user ... " + JSON.stringify(userCredential));
       console.log("User is now signed in ");
-      console.log("Sign In User: email" + email + "password" + password);
-
-      console.log("login update")
-  
-
+      console.log("Sign In User: Email - " + email + " Password - " + password);
 
       update(ref(db, "playerStats/" + uid),{
         status: true
@@ -114,6 +110,7 @@ SignInUser.addEventListener("submit", function (e) {
       //update display name
       //UpdatePlayerDisplayName(displayname);
       //console.log(displayname);
+      console.log("Login Completed")
 
     }).catch((error) => {
       const errorCode = error.code;
