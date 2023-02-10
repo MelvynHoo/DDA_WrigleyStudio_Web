@@ -68,6 +68,7 @@ function createUser(email, password, displayname) {
       lastLoggedIn: currentTimestamp,
       updatedOn: currentTimestamp,
       userName: displayname,
+      displayName: displayname,
       gender: "male",
       age: 0,
     };

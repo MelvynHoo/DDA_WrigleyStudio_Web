@@ -73,6 +73,12 @@ SignInUser.addEventListener("submit", function (e) {
       update(ref(db, "players/" + uid),{
         status: true
       });
+
+      /*
+      update(ref(db, "players/" + uid),{
+        displayName: "Sally"
+      });
+      */
       setTimeout(() => {window.location.href="index.html"}, 1000);
       
       //change page
