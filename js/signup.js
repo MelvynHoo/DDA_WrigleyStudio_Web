@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, child, set, onValue, orderByChild } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 //import {UpdatePlayerDisplayName} from "./firebase.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
@@ -37,9 +37,11 @@ CreateUser.addEventListener("submit", function (e) {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
   var displayname = document.getElementById("username").value;
-  
+
   createUser(email, password, displayname);
   console.log("email" + email + "password" + password + "username" + displayname);
+
+  
 });
 
 //create a new user based on email n password into Auth service
@@ -48,13 +50,17 @@ CreateUser.addEventListener("submit", function (e) {
 function createUser(email, password, displayname) {
   console.log("creating the user");
 
+  
+
   createUserWithEmailAndPassword(auth, email, password, displayname)
     .then((userCredential) => {
       //signedin
+      //const user = userCredential.user;
       const user = userCredential.user;
       console.log("created user ... " + JSON.stringify(userCredential));
       console.log("User is now signed in ");
 
+      
       //update display name
       //UpdatePlayerDisplayName();
       //console.log(displayname);
@@ -109,12 +115,26 @@ function createUser(email, password, displayname) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+
         console.log("The UID: " + uid)
         set(ref(db, `players/${uid}`), playerData);
         set(ref(db, `playerStats/${uid}`), playerStats);
         set(ref(db, `leaderBoards/${uid}`), leaderBoards);
         set(ref(db, `gameLevels/${uid}`), gameLevels);
         set(ref(db, `gameCompletion/${uid}`), gameCompletion);
+
+        updateProfile(auth.currentUser, {
+          displayName: displayname
+        }).then(() => {
+          const authUser = auth.currentUser;
+          const displayNameAuth = authUser.displayName;
+          console.log("Checking auth user:" + displayNameAuth);
+          alert(typeof displayname) // displays "string"
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+
       } else {
         // User is signed out
         // ...
@@ -130,6 +150,7 @@ function createUser(email, password, displayname) {
       const errorMessage = error.message;
       console.log(`ErrorCode: ${errorCode} -> Message: ${errorMessage}`);
     });
+
 
     //onValue(playerRef, (snapshot) =>{
     //  updatePlayerContent(snapshot);

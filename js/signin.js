@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, updateProfile} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, child, set, update, onValue, orderByChild } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 //import {UpdatePlayerDisplayName} from "./firebase.js";
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
@@ -48,21 +48,48 @@ SignInUser.addEventListener("submit", function (e) {
     var password = document.getElementById("password").value;
     //var displayname = document.getElementById("username").value;
 
+    
+    
+    
     signInWithEmailAndPassword(auth,email,password)
     .then((userCredential) => {
       //signedin
       const user = userCredential.user;
       const uid = user.uid;
-
+      
+      
+      const authUser = auth.currentUser;
+      const displayNameAuth = authUser.displayName;
+      console.log("Checking display user:" + displayNameAuth);
+      //console.log("Checking auth user:" + currentUser);
+      alert(typeof displayNameAuth)
+      
+      /*
+      updateProfile(auth.currentUser, {
+        //displayName: "Xiao Hu"
+      }).then(() => {
+        // Profile updated!
+        const authUser = auth.currentUser;
+        const displayNameAuth = authUser.displayName;
+        console.log("Checking display user:" + displayNameAuth);
+        console.log("Checking auth user:" + currentUser);
+        alert(typeof displayNameAuth)
+      }).catch((error) => {
+        // An error occurred
+        // ...
+      });
+      */
       sessionStorage.setItem("UUID", uid);
       console.log("The user uid" + uid);
       
-      console.log("logging in user ... " + JSON.stringify(userCredential));
+      //console.log("logging in user ... " + JSON.stringify(userCredential));
       console.log("User is now signed in ");
       console.log("Sign In User: email" + email + "password" + password);
 
       console.log("login update")
   
+
+
       update(ref(db, "playerStats/" + uid),{
         status: true
       });
@@ -93,5 +120,6 @@ SignInUser.addEventListener("submit", function (e) {
       const errorMessage = error.message;
       console.log(`ErrorCode: ${errorCode} -> Message: ${errorMessage}`);
     });
-  }
+}
+
 
