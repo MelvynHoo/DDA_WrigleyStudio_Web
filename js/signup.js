@@ -37,8 +37,11 @@ CreateUser.addEventListener("submit", function (e) {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
   var displayname = document.getElementById("username").value;
-
-  createUser(email, password, displayname);
+  var gender = document.getElementById("inputGender").value;
+  console.log("The gender" + gender)
+  var age = document.getElementById("inputAge").value;
+  console.log("The age" + age)
+  createUser(email, password, displayname, gender, age);
   console.log("email" + email + "password" + password + "username" + displayname);
 
   
@@ -47,12 +50,12 @@ CreateUser.addEventListener("submit", function (e) {
 //create a new user based on email n password into Auth service
 //user will get signed in
 //userCredential is an object that gets
-function createUser(email, password, displayname) {
+function createUser(email, password, displayname, gender, age) {
   console.log("Creating the user");
 
   
 
-  createUserWithEmailAndPassword(auth, email, password, displayname)
+  createUserWithEmailAndPassword(auth, email, password, displayname, gender, age)
     .then((userCredential) => {
       //signedin
       //const user = userCredential.user;
@@ -75,8 +78,8 @@ function createUser(email, password, displayname) {
       updatedOn: currentTimestamp,
       userName: displayname,
       displayName: displayname,
-      gender: "male",
-      age: 0,
+      gender: gender,
+      age: age,
     };
     var playerStats = {
       createdOn: currentTimestamp,
