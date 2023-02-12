@@ -35,15 +35,28 @@ var limit = 10;
 // Call the function ever 5 five seconds
 function refreshData(){
   // do whatever you like here
-  //console.log("execute refresh data, wait 5 seconds");
-  setTimeout(refreshData, 5000);
+  //console.log("execute refresh data, wait 7 seconds");
   updateData(limit);
+  setTimeout(updateNotificationFunc, 5000);
+  setTimeout(refreshData, 7000);
+  //updateNotificationFunc();
 }
 
+function updateNotificationFunc(){
+  //console.log("notification updated");
+  var updateNotification = document.getElementById("updateNotification");
+  //var updateNotificationContent = "Top 10 Leaderboard Ranking (Updating...)";
+  setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating)`; }, 0);
+  setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating.)`; }, 500);
+  setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating..)`; }, 1000);
+  setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating...)`; }, 1500);
+  //updateNotification.innerHTML = updateNotificationContent;
+}
 refreshData();
 
 function updateData(limit){
-  console.log("Data updated");
+  
+  //console.log("Data updated");
   const que = query(ref(db,"leaderBoards"),orderByChild("totalScore"),limitToLast(limit))
     
     //get the sorted leaderboard
@@ -60,7 +73,8 @@ function updateData(limit){
         var removeContent = "";
         lbList.reverse()
         //console.log(lbList);
-
+        var updateNotification = document.getElementById("updateNotification");
+        var updateNotificationContent = "Top 10 Leaderboard Ranking";
         removeContent = `<tr>
         <th>Ranking</th>
         <th>Name</th>
@@ -68,6 +82,7 @@ function updateData(limit){
         <th>Total Star</th>
         <th>Status</th>
         </tr>`
+        updateNotificationContent = `Top 10 Leaderboard Ranking`
 
         var i = 1;
         lbList.forEach((item) => {
@@ -120,52 +135,14 @@ function updateData(limit){
         });
         
         leaderBoardData.innerHTML = removeContent;
-        leaderBoardData.innerHTML += content; 
-        //setTimeout(() => {  leaderBoardData.innerHTML += content; }, 5);
+        leaderBoardData.innerHTML += content;
+        updateNotification.innerHTML = updateNotificationContent;
+        //setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating...)`; }, 5);
       }
       else {
       }
     });
 
-
-  /*get(players).then((snapshot) => { //retrieve a snapshot of the data using a callback
-    if (snapshot.exists()) {
-      //if the data exist
-      var userList= [];
-      snapshot.forEach((childSnapshot) => {
-        userList.push(childSnapshot.val());                   
-      });
-
-        var noOfActiveUser = document.getElementById("noOfActiveUser");
-        var noOfActiveUserContent = "";
-        var noRegisterUser = document.getElementById("noOfRegisteredUser");
-        var noRegisterUserContent = "";
-        
-        userList.reverse()
-         //console.log(userList);
-
-        var totalActiveUser = 0;
-        var totalRegisteredUser = 0;
-        totalRegisteredUser = userList.length;
-        noRegisterUserContent = `
-        <p>${totalRegisteredUser}</p>
-        `   
-        userList.forEach((item) => {
-        if(item.status == true)
-        {
-            totalActiveUser++
-            noOfActiveUserContent = `
-        <p>${totalActiveUser}</p>
-        `
-        }
-      });
-      noOfActiveUser.innerHTML = noOfActiveUserContent;
-      noRegisterUser.innerHTML = noRegisterUserContent;
-    }
-    else {
-      //@TODO what if no data ?
-    }
-  });*/
 get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a callback
   if (snapshot.exists()) {
     //if the data exist
@@ -220,7 +197,3 @@ get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a
   }
 });
 }
-
-//window.location.reload()
-
-//onValue()
