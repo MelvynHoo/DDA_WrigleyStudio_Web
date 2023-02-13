@@ -51,14 +51,14 @@ function getDashBoard(){
             var totalRegisteredUser = 0;
             totalRegisteredUser = userList.length;
             noRegisterUserContent = `
-            <p>${totalRegisteredUser}</p>
+            <p class="my-text-font3">${totalRegisteredUser}</p>
             `   
             userList.forEach((item) => {
             if(item.status == true)
             {
                 totalActiveUser++
                 noOfActiveUserContent = `
-            <p>${totalActiveUser}</p>
+            <p class="my-text-font3">${totalActiveUser}</p>
             `
             }
           });
@@ -110,10 +110,10 @@ function getDashBoard(){
             //totalRegisteredUser = dashBoardList.length;
             
             overAllStarContent = `
-            <p>${totalStar}</p>
+            <p class="my-text-font3">${totalStar}</p>
             `
             overAllScoreContent = `
-            <p>${totalScore}</p>
+            <p class="my-text-font3">${totalScore}</p>
             `
         });
         overAllStar.innerHTML = overAllStarContent;

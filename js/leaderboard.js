@@ -59,10 +59,10 @@ var limit = 10;
           var totalStar = "0";
 
           if(item.status == true){
-            status = '<td style="color:green;">Online</td>'
+            status = '<td style="color:#00664B; font-weight: bold; ">Online</td>'
           }
           else{
-            status = '<td style="color:red;">Offline</td>'
+            status = '<td style="color:#B10E0E; font-weight: bold;">Offline</td>'
           }
 
           if(item.userName == null){

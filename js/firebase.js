@@ -42,17 +42,35 @@ let deletePlayerStat = document.getElementById("deleteData");
 deletePlayerStat.addEventListener("click",  UpdatePlayerStats);
  
 //UpdatePlayerStats();
+var currentTimestamp = new Date().getTime();
 
 function UpdatePlayerStats(){
   console.log("Deleting you statistic")
 
   update(ref(db, "playerStats/" + myData),{
-      //noOfMoneyEarned: 0,
-      //noOfboxDelivered: 0
+    totalScore: 0,
+    totalStar: 0,
+    updatedOn: currentTimestamp
   });
   update(ref(db, "leaderBoards/" + myData),{
-    //noOfMoneyEarned: 0,
-    //noOfboxDelivered: 0
+    totalScore: 0,
+    totalStar: 0,
+    updatedOn: currentTimestamp
+  });
+  update(ref(db, "gameCompletion/" + myData),{
+    allLevelComplete: false,
+    levelOneCompletion: false,
+    levelTwoCompletion: false
+  });
+  update(ref(db, "gameLevels/" + myData),{
+    totalScore: 0,
+    totalStar: 0,
+    levelOneScore: 0,
+    levelOneStar: 0,
+    levelTwoScore: 0,
+    levelTwoStar: 0,
+    levelTwoInjuredSaved: 0,
+    levelTwoObjectiveComplete: 0,
   });
   setTimeout(() => {window.location.href="index.html"}, 1000);
 }
@@ -74,7 +92,7 @@ function getPlayerData() {
       try {
         //let's do something about it
         var playerUsername = document.getElementById("playerUserName");
-        var content = `<p class ="name" style="color: red; font-weight: bold;"> *No player name
+        var content = `<p class ="name" style="color:white; font-weight: bold;"> *No player Name
         </p>`;
         snapshot.forEach((childSnapshot) => {
           //looping through each snapshot
@@ -86,7 +104,7 @@ function getPlayerData() {
           if (userKey == myData) {
             console.log(`username of player found: ${childSnapshot.child("userName").val()}`);
             
-            content = `<p class ="name" style="font-weight: bold;"> Welcome Back,
+            content = `<p class ="name" style="font-weight: bold; color:white;"> Welcome Back,
             ${childSnapshot.child("userName").val()}
             </p>`;
           }
