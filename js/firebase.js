@@ -74,7 +74,8 @@ function getPlayerData() {
       try {
         //let's do something about it
         var playerUsername = document.getElementById("playerUserName");
-        var content = "";
+        var content = `<p class ="name" style="color: red; font-weight: bold;"> *No player name
+        </p>`;
         snapshot.forEach((childSnapshot) => {
           //looping through each snapshot
           //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
@@ -85,7 +86,7 @@ function getPlayerData() {
           if (userKey == myData) {
             console.log(`username of player found: ${childSnapshot.child("userName").val()}`);
             
-            content += `<p class ="name" style="font-weight: bold;"> Welcome Back,
+            content = `<p class ="name" style="font-weight: bold;"> Welcome Back,
             ${childSnapshot.child("userName").val()}
             </p>`;
           }
