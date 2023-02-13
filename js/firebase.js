@@ -45,34 +45,43 @@ deletePlayerStat.addEventListener("click",  UpdatePlayerStats);
 var currentTimestamp = new Date().getTime();
 
 function UpdatePlayerStats(){
-  console.log("Deleting you statistic")
-
-  update(ref(db, "playerStats/" + myData),{
-    totalScore: 0,
-    totalStar: 0,
-    updatedOn: currentTimestamp
-  });
-  update(ref(db, "leaderBoards/" + myData),{
-    totalScore: 0,
-    totalStar: 0,
-    updatedOn: currentTimestamp
-  });
-  update(ref(db, "gameCompletion/" + myData),{
-    allLevelComplete: false,
-    levelOneCompletion: false,
-    levelTwoCompletion: false
-  });
-  update(ref(db, "gameLevels/" + myData),{
-    totalScore: 0,
-    totalStar: 0,
-    levelOneScore: 0,
-    levelOneStar: 0,
-    levelTwoScore: 0,
-    levelTwoStar: 0,
-    levelTwoInjuredSaved: 0,
-    levelTwoObjectiveComplete: 0,
-  });
-  setTimeout(() => {window.location.href="index.html"}, 1000);
+  
+  if (myData == null)
+  {
+    console.log("No UUID to delete");
+    setTimeout(() => {window.location.href="index.html"}, 1000);
+  }
+  else
+  {
+    console.log("Deleting you statistic")
+    update(ref(db, "playerStats/" + myData),{
+      totalScore: 0,
+      totalStar: 0,
+      updatedOn: currentTimestamp
+    });
+    update(ref(db, "leaderBoards/" + myData),{
+      totalScore: 0,
+      totalStar: 0,
+      updatedOn: currentTimestamp
+    });
+    update(ref(db, "gameCompletion/" + myData),{
+      allLevelComplete: false,
+      levelOneCompletion: false,
+      levelTwoCompletion: false
+    });
+    update(ref(db, "gameLevels/" + myData),{
+      totalScore: 0,
+      totalStar: 0,
+      levelOneScore: 0,
+      levelOneStar: 0,
+      levelTwoScore: 0,
+      levelTwoStar: 0,
+      levelTwoInjuredSaved: 0,
+      levelTwoObjectiveComplete: 0,
+    });
+    setTimeout(() => {window.location.href="index.html"}, 1000);
+  }
+  
 }
 
 //Get player data
