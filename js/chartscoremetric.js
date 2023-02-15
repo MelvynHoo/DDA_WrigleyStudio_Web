@@ -65,8 +65,8 @@ function refreshData(){
     // do whatever you like here
     //console.log("execute refresh data, wait 7 seconds");
     UpdateTimeChart();
-    setTimeout(updateNotificationFunc, 12000);
-    setTimeout(refreshData, 14000);
+    setTimeout(updateNotificationFunc, 18000);
+    setTimeout(refreshData, 20000);
     //updateNotificationFunc();
 }
 
@@ -78,7 +78,7 @@ function updateNotificationFunc(){
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Attaining Their Best Scores (Updating.)`; }, 500);
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Attaining Their Best Scores (Updating..)`; }, 1000);
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Attaining Their Best Scores (Updating...)`; }, 1500);
-    setTimeout(() => {  $('#myAreaChart').remove(); $('.chartjs-size-monitor').remove(); $('#myAddAreaChart').append('<canvas id="myAreaChart"><canvas>');}, 1950);
+    setTimeout(() => {  $('#myAreaChart').remove(); $('.chartjs-size-monitor').remove(); $('#myAddAreaChart').append('<canvas id="myAreaChart"><canvas>');}, 1990);
     //$('#myAreaChart').remove(); // this is my <canvas> element
     //$('.chartjs-size-monitor').remove();
     //$('#myAddAreaChart').append('<canvas id="myAreaChart"><canvas>');
@@ -187,11 +187,11 @@ function UpdateTimeChart(){
                 datasets: [{
                 label: "No. Of Players",
                 lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                borderColor: "rgba(78, 115, 223, 1)",
+                backgroundColor: "rgba(56, 88, 184, 0.05)",
+                borderColor: "#1E40A4",
                 pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointBackgroundColor: "#1E40A4",
+                pointBorderColor: "#1E40A4",
                 pointHoverRadius: 3,
                 pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
@@ -233,8 +233,8 @@ function UpdateTimeChart(){
                     }
                     },
                     gridLines: {
-                    color: "rgb(234, 236, 244)",
-                    zeroLineColor: "rgb(234, 236, 244)",
+                    color: "rgb(186, 186, 187)",
+                    zeroLineColor: "rgb(186, 186, 187)",
                     drawBorder: false,
                     borderDash: [2],
                     zeroLineBorderDash: [2]
@@ -246,9 +246,9 @@ function UpdateTimeChart(){
                 },
                 tooltips: {
                 backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
+                bodyFontColor: "#0B0B0F",
                 titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
+                titleFontColor: '#0B0B0F',
                 titleFontSize: 14,
                 borderColor: '#dddfeb',
                 borderWidth: 1,

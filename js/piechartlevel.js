@@ -38,8 +38,8 @@ function refreshData(){
     // do whatever you like here
     //console.log("execute refresh data, wait 7 seconds");
     UpdatePieChart();
-    setTimeout(updateNotificationFunc, 10000);
-    setTimeout(refreshData, 12000);
+    setTimeout(updateNotificationFunc, 18000);
+    setTimeout(refreshData, 20000);
     //updateNotificationFunc();
 }
 
@@ -51,7 +51,7 @@ function updateNotificationFunc(){
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Who Completed The Levels (Updating.)`; }, 500);
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Who Completed The Levels (Updating..)`; }, 1000);
     setTimeout(() => {  updateNotification.innerHTML = `No. of Players Who Completed The Levels (Updating...)`; }, 1500);
-    setTimeout(() => {  $('#myPieChart').remove(); $('#myAddPieChart').append('<canvas id="myPieChart"><canvas>');}, 1950);
+    setTimeout(() => {  $('#myPieChart').remove(); $('#myAddPieChart').append('<canvas id="myPieChart"><canvas>');}, 1990);
     //updateNotification.innerHTML = updateNotificationContent;
   }
 
