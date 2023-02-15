@@ -37,8 +37,8 @@ function refreshData(){
   // do whatever you like here
   //console.log("execute refresh data, wait 7 seconds");
   updateData(limit);
-  setTimeout(updateNotificationFunc, 5000);
-  setTimeout(refreshData, 7000);
+  setTimeout(updateNotificationFunc, 6000);
+  setTimeout(refreshData, 8000);
   //updateNotificationFunc();
 }
 
