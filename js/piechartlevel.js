@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, query, child, set, onValue, orderByChild, limitToLast, update} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -34,6 +34,7 @@ const gameCompletion = ref(db, "gameCompletion");
 var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in refreshpage: " + myData);
 
+// RefreshData that allow the data to be refresh every 20 seconds to a new data from the firebase.
 function refreshData(){
     // do whatever you like here
     //console.log("execute refresh data, wait 7 seconds");
@@ -43,6 +44,7 @@ function refreshData(){
     //updateNotificationFunc();
 }
 
+// A way to let the user knows that this particular set of datas is going refresh within the time limit is being set on
 function updateNotificationFunc(){
     //console.log("notification updated");
     var updateNotification = document.getElementById("updateNotificationPieChart");
@@ -57,6 +59,7 @@ function updateNotificationFunc(){
 
 refreshData();
 //UpdatePieChart();
+// This enable us to show the Pie chart to show the No. of Players Who Completed The Levels, To enable the user to see how many has completed the levels or all the levels.
 function UpdatePieChart(){
     get(gameCompletion).then((snapshot) => { //retrieve a snapshot of the data using a callback
         if (snapshot.exists()) {
@@ -75,10 +78,12 @@ function UpdatePieChart(){
             var updateNotification = document.getElementById("updateNotificationPieChart");
             var updateNotificationContent = "No. of Players Who Completed The Levels";
 
+            // To store the number of players who has completed the levels
             var allLevelCompletion = 0;
             var levelOneCompletion = 0;
             var levelTwoCompletion = 0;
   
+            // This check for every user who has completed the levels, it will count up the levels by 1
           gameCompletionList.forEach((item) => {
             if (item.levelOneCompletion == true)
             {
@@ -109,7 +114,7 @@ function UpdatePieChart(){
 
           });
 
-          // Pie Chart Example
+          // Pie Chart Example (This came from the bootstrap template that shows the dynamic pie chart in the website)
             var ctx = document.getElementById("myPieChart");
             var myPieChart = new Chart(ctx, {
             type: 'doughnut',

@@ -9,7 +9,7 @@ import { getDatabase, ref, get, child, set, update, onValue, orderByChild } from
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -42,21 +42,19 @@ SignInUser.addEventListener("submit", function (e) {
     //console.log("Sign In User: email" + email + "password" + password + "username" + displayname);
   });
   
+  // This function allow the person to login into the website and it can also use the same credentialsbe for the game
   function signInUser(email, password){
     console.log("Sign in user in progress...")
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     //var displayname = document.getElementById("username").value;
-
     
-    
-    
+    // Using the auth, email and password to generate the UUID of the user
     signInWithEmailAndPassword(auth,email,password)
     .then((userCredential) => {
       //signedin
       const user = userCredential.user;
       const uid = user.uid;
-      
       
       const authUser = auth.currentUser;
       const displayNameAuth = authUser.displayName;
@@ -79,6 +77,8 @@ SignInUser.addEventListener("submit", function (e) {
         // ...
       });
       */
+
+      // Saved the session storage of the user
       sessionStorage.setItem("UUID", uid);
       console.log("The user UUID: " + uid);
       
@@ -86,6 +86,7 @@ SignInUser.addEventListener("submit", function (e) {
       console.log("User is now signed in ");
       console.log("Sign In User: Email - " + email + " Password - " + password);
 
+      // Update the user status to be online, show that the player is online
       update(ref(db, "playerStats/" + uid),{
         status: true
       });
@@ -102,6 +103,7 @@ SignInUser.addEventListener("submit", function (e) {
         displayName: "Sally"
       });
       */
+     // bring the user to the main page
       setTimeout(() => {window.location.href="index.html"}, 1000);
       
       //change page

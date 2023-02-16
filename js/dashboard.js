@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, query, child, set, onValue, orderByChild, limitToLast} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -28,8 +28,11 @@ const players = ref(db,"players")
 var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in dashboard: " + myData);
 
+// This function allow us to display and calculate the overall score and stars from the firebase database.
+// In addition, getting how many active users and registered user in the game and website
 getDashBoard();
 function getDashBoard(){
+  //Get the players database from firebase
     //const leaderboard = query(ref(db,"leaderboards"))
     get(players).then((snapshot) => { //retrieve a snapshot of the data using a callback
         if (snapshot.exists()) {
@@ -46,14 +49,18 @@ function getDashBoard(){
             
             userList.reverse()
             //console.log(userList);
-  
+            // To store the amount of the active users and registered user
             var totalActiveUser = 0;
             var totalRegisteredUser = 0;
+
+            // From the player data structure, count the amount of user is store in players
             totalRegisteredUser = userList.length;
             noRegisterUserContent = `
             <p class="my-text-font3">${totalRegisteredUser}</p>
             `   
             userList.forEach((item) => {
+
+            // If the status of the player is true, the player is online and add the count of it as 1
             if(item.status == true)
             {
                 totalActiveUser++
@@ -70,9 +77,11 @@ function getDashBoard(){
         }
       });
   
+    // Get the pleaderboards database from firebase
     get(leaderboard).then((snapshot) => { //retrieve a snapshot of the data using a callback
       if (snapshot.exists()) {
-        //if the data exist
+        //if the data exist, then do
+        // Push the leaderboards data into an array
         var dashBoardList= [];
         snapshot.forEach((childSnapshot) => {
             dashBoardList.push(childSnapshot.val());                   
@@ -82,12 +91,15 @@ function getDashBoard(){
         var overAllScoreContent = "";
         var overAllStar = document.getElementById("overAllStar");
         var overAllStarContent = "";
+        // Reverse the order from big to small, to small to big
         dashBoardList.reverse()
         //console.log(dashBoardList);
 
+        // Storing the overall total star and score
         var totalStar = 0;
         var totalScore = 0;
 
+        // From the array, look for the total star and score and add them up to find the overall score and star
         dashBoardList.forEach((item) => {
           //console.log(`username of players found: ${item.noOfMoneyEarned}`);
           if (item.totalStar == null)

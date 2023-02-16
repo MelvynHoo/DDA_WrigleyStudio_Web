@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, query, child, set, onValue, orderByChild, limitToLast, update} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -42,6 +42,7 @@ function refreshData(){
   //updateNotificationFunc();
 }
 
+// A way to let the user knows that this particular set of datas is going refresh within the time limit is being set on
 function updateNotificationFunc(){
   //console.log("notification updated");
   var updateNotification = document.getElementById("updateNotification");
@@ -54,12 +55,13 @@ function updateNotificationFunc(){
 }
 refreshData();
 
+//This function allow the leaderboards to be refresh by deleting the old leaderboards and replacing it with the new leaderboards data, which will have to update data from firebase
 function updateData(limit){
   
   //console.log("Data updated");
   const que = query(ref(db,"leaderBoards"),orderByChild("totalScore"),limitToLast(limit))
     
-    //get the sorted leaderboard
+    //get the sorted leaderboard and reverse the to ascending order
     get(que).then((snapshot) => { //retrieve a snapshot of the data using a callback
       if (snapshot.exists()) {
         //if the data exist
@@ -85,6 +87,7 @@ function updateData(limit){
         updateNotificationContent = `Top 10 Leaderboard Ranking`
 
         var i = 1;
+        //From the array of the leaderboard, print out each item of the top 10 user that is sorted by the total score.
         lbList.forEach((item) => {
           //console.log(`username of players found: ${item.noOfMoneyEarned}`);
           var status = "Offline";
@@ -142,10 +145,11 @@ function updateData(limit){
       else {
       }
     });
-
+// Get the leaderboards database from firebase and display again
 get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a callback
   if (snapshot.exists()) {
     //if the data exist
+    // Push the leaderboards data into an array
     var dashBoardList= [];
     snapshot.forEach((childSnapshot) => {
         dashBoardList.push(childSnapshot.val());                   
@@ -155,12 +159,14 @@ get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a
     var overAllScoreContent = "";
     var overAllStar = document.getElementById("overAllStar");
     var overAllStarContent = "";
+    // Reverse the order from big to small, to small to big
     dashBoardList.reverse()
     //console.log(dashBoardList);
 
     var totalStar = 0;
     var totalScore = 0;
 
+    // From the array, look for the total star and score and add them up to find the overall score and star
     dashBoardList.forEach((item) => {
       //console.log(`username of players found: ${item.noOfMoneyEarned}`);
       if (item.totalStar == null)

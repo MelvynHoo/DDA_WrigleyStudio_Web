@@ -9,7 +9,7 @@ import { getDatabase, ref, get, child, set, onValue, orderByChild } from "https:
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -54,7 +54,7 @@ function createUser(email, password, displayname, gender, age) {
   console.log("Creating the user");
 
   
-
+  // This creates the user and create a player data structure based on the user email, password, name, gender and age
   createUserWithEmailAndPassword(auth, email, password, displayname, gender, age)
     .then((userCredential) => {
       //signedin
@@ -68,7 +68,7 @@ function createUser(email, password, displayname, gender, age) {
       //UpdatePlayerDisplayName();
       //console.log(displayname);
 
-    // create the database in the website
+    // create the database from the website into firebase. Same way when create new user in the game
     var currentTimestamp = new Date().getTime();
     var playerData = {
       status: false,
@@ -113,6 +113,8 @@ function createUser(email, password, displayname, gender, age) {
       levelTwoCompletion: false, // change value for testing
       allLevelComplete: false, // change value for testing
     }
+
+    // When the user successfully sign up, the following data will be generate in the firebase
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties

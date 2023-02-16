@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, query, child, set, onValue, orderByChild, limitToLast, update} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -13,7 +13,7 @@ const firebaseConfig = {
   appId: "1:1048521337977:web:53224d4d694c8672ea38a8"
 };
 
-// Set new default font family and font color to mimic Bootstrap's default styling
+// Set new default font family and font color to mimic Bootstrap's default styling (Comes from the BootStrap template)
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
@@ -34,7 +34,7 @@ const gameCompletion = ref(db, "gameCompletion");
 var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in refreshpage: " + myData);
 
-
+//Number format from the bootstrap template for the graph
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
   // *     return: '1 234,56'
@@ -60,7 +60,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-
+// RefreshData that allow the data to be refresh every 20 seconds to a new data from the firebase.
 function refreshData(){
     // do whatever you like here
     //console.log("execute refresh data, wait 7 seconds");
@@ -70,6 +70,7 @@ function refreshData(){
     //updateNotificationFunc();
 }
 
+// A way to let the user knows that this particular set of datas is going refresh within the time limit is being set on
 function updateNotificationFunc(){
     //console.log("notification updated");
     var updateNotification = document.getElementById("updateNotificationLineChart");
@@ -86,6 +87,9 @@ function updateNotificationFunc(){
   }
 
 refreshData();
+
+// This enable us to show the graph chart to show the No. of Players that have attain their highest socres, in a way the users can see a bellcurve of the
+// average of where the users is at.
 function UpdateTimeChart(){
     get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a callback
         if (snapshot.exists()) {
@@ -104,6 +108,7 @@ function UpdateTimeChart(){
             var updateNotification = document.getElementById("updateNotificationLineChart");
             var updateNotificationContent = "No. of Players Attaining Their Best Scores";
   
+            // The variable store the count of the scores of each players
             var NoOfPlayerfor0 = 0;
             var NoOfPlayerfor100 = 0;
             var NoOfPlayerfor200 = 0;
@@ -119,6 +124,7 @@ function UpdateTimeChart(){
           
           leaderBoardsList.forEach((item) => {
             //console.log(item.totalScore);
+            // The if else statement below allow us to categorize the players scores
             if (item.totalScore <= 0)
             {
                 NoOfPlayerfor0+= 1;
@@ -178,7 +184,7 @@ function UpdateTimeChart(){
           });
 
 
-          // Area Chart Example
+          // Area Chart Example (This came from the bootstrap template that shows the dynamic graph in the website)
             var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
             type: 'line',
@@ -227,7 +233,7 @@ function UpdateTimeChart(){
                     ticks: {
                     maxTicksLimit: 5,
                     padding: 10,
-                    // Include a dollar sign in the ticks (say no to dollar sign)
+                    
                     callback: function(value, index, values) {
                         return '' + number_format(value);
                     }
@@ -267,8 +273,6 @@ function UpdateTimeChart(){
                 }
             }
             });
-
-
 
             updateNotification.innerHTML = updateNotificationContent;
 

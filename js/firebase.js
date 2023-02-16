@@ -9,7 +9,7 @@ import { getDatabase, ref, get, child, set, update, push, onValue, orderByChild}
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -35,15 +35,17 @@ const leaderboard = ref(db, "leaderBoards");
 var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in firebase: " + myData);
 
-//[STEP 3] Setup our event listener
 var limit = 1;
 
+// Ability for the user to delete the player statistics
 let deletePlayerStat = document.getElementById("deleteData");
 deletePlayerStat.addEventListener("click",  UpdatePlayerStats);
  
 //UpdatePlayerStats();
 var currentTimestamp = new Date().getTime();
 
+//This function will reset all the value into 0 and the levels back to false. 
+// Hence this will effectively reset the player progress and the player will have to play again to continue.
 function UpdatePlayerStats(){
   
   if (myData == null)
@@ -95,6 +97,8 @@ function getPlayerData() {
   //playerRef is declared at the top using a constant
   //const playerRef = ref(db, "players");
   //get(child(db,`players/`))
+
+  // Get the players data from the firebase
   get(playerRef).then((snapshot) => { //retrieve a snapshot of the data using a callback
     if (snapshot.exists()) {
       //if the data exist
@@ -110,6 +114,7 @@ function getPlayerData() {
         var playerAge = document.getElementById("playerAge");
         var playerAgeContent = "";
 
+        // For every players, search the UUID for the player that is logged into the website, can only display their stats
         snapshot.forEach((childSnapshot) => {
           //looping through each snapshot
           //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
@@ -167,6 +172,7 @@ function getPlayerData() {
         var myStatus = document.getElementById("yourStatus");
         var myStatusContent ="";
 
+        // For every players, search the UUID for the player that is logged into the website, can only display their stats
         snapshot.forEach((childSnapshot) => {
           //looping through each snapshot
           //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
@@ -266,6 +272,8 @@ function GetCurrentUser(){
   return user;
 }
 
+// Clear the session Storage that store the UUID of the player and update the status to false to become offline.
+// Then redirect them to the login screen.
 let logout = document.getElementById("LogOutBTN");
 logout.addEventListener("click",  LogOut);
 function LogOut(){

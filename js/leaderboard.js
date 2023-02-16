@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, ref, get, query, child, set, onValue, orderByChild, limitToLast} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// The web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA1Nte-TSWCBRUYXUvx2ZIP7_IMLbxshTQ",
   authDomain: "dda-wrigleystudio-y2s2-ip.firebaseapp.com",
@@ -29,14 +29,14 @@ var myData = sessionStorage.getItem('UUID');
 console.log("this is my data in leaderboard: " + myData);
 
 var limit = 10;
-// get leaderboard
+// The function below to getting the leaderbaords datasbase from fireabase
   getLB(limit);
   function getLB(limit = 10){
      //q = get(leaderboard).then(orderByChild("noOfMoneyEarned"));
-     // Sort the leaderboard
+     // Sort the leaderboard by the total score of the players and limit the amoount to 10.
     const que = query(ref(db,"leaderBoards"),orderByChild("totalScore"),limitToLast(limit))
     
-    //get the sorted leaderboard
+    //get the sorted leaderboard and reverse the to ascending order
     get(que).then((snapshot) => { //retrieve a snapshot of the data using a callback
       if (snapshot.exists()) {
         //if the data exist
@@ -51,6 +51,7 @@ var limit = 10;
         //console.log(lbList);
 
         var i = 1;
+        //From the array of the leaderboard, print out each item of the top 10 user that is sorted by the total score.
         lbList.forEach((item) => {
           //console.log(`username of players found: ${item.noOfMoneyEarned}`);
           var status = "Offline";
