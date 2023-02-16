@@ -51,6 +51,13 @@ function updateNotificationFunc(){
   setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating.)`; }, 500);
   setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating..)`; }, 1000);
   setTimeout(() => {  updateNotification.innerHTML = `Top 10 Leaderboard Ranking (Updating...)`; }, 1500);
+
+  var updateStatisticNotfication = document.getElementById("updateStatisticNotfication");
+  setTimeout(() => {  updateStatisticNotfication.innerHTML = `Your Statistics (Updating)`; }, 0);
+  setTimeout(() => {  updateStatisticNotfication.innerHTML = `Your Statistics (Updating.)`; }, 500);
+  setTimeout(() => {  updateStatisticNotfication.innerHTML = `Your Statistics (Updating..)`; }, 1000);
+  setTimeout(() => {  updateStatisticNotfication.innerHTML = `Your Statistics (Updating...)`; }, 1500);
+
   //updateNotification.innerHTML = updateNotificationContent;
 }
 refreshData();
@@ -202,4 +209,102 @@ get(leaderBoards).then((snapshot) => { //retrieve a snapshot of the data using a
     //@TODO what if no data ?
   }
 });
+
+///PLAYER STATS
+get(playerStats).then((snapshot) => { //retrieve a snapshot of the data using a callback
+  if (snapshot.exists()) {
+    //if the data exist
+    
+    try {
+      //let's do something about it
+      var playerName = document.getElementById("playerStatsUserName");
+      var playerNamecontent = "";
+
+      var playerStatsTotalScore = document.getElementById("playerStatsTotalScore");
+      var playerStatsTotalScoreContent = "";
+
+      var playerStatsTotalStar = document.getElementById("playerStatsTotalStar");
+      var playerStatsTotalStarContent = "";
+
+      var myStatus = document.getElementById("yourStatus");
+      var myStatusContent = "";
+
+      var updateStatisticNotfication = document.getElementById("updateStatisticNotfication");
+      var updateStatisticNotficationContent = "Your Statistics";
+
+      // For every players, search the UUID for the player that is logged into the website, can only display their stats
+      snapshot.forEach((childSnapshot) => {
+        //looping through each snapshot
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+        //console.log("User key:" + childSnapshot.key);
+        //console.log("Username:" + childSnapshot.child("userName").val());
+        //console.log(`compare ${childSnapshot.key}:SUbyQ9LeZjb2MzjIKIC7wEWvxLW2`)
+
+        let userKey = (childSnapshot.key).trim();
+
+        if (userKey == myData) {
+
+          ////display name
+          console.log(`username of playerStats found: ${childSnapshot.child("userName").val()}`);
+
+          //adding data into 'content'
+          playerNamecontent = `<td id="userName">
+          ${childSnapshot.child("userName").val()}
+          </td>`;
+
+          //adding name to display name
+          //content += `<p class = "username">
+          //${childSnapshot.child("userName").val()}
+          //</p>`;
+
+          //adding data into 'content'
+          playerStatsTotalScoreContent = `<td id="playerStatsTotalScore">
+          ${childSnapshot.child("totalScore").val()}
+          </td>`;
+          
+          //update our table content
+          //highestScore.innerHTML = content;
+        
+          
+          //adding data into 'content'
+          playerStatsTotalStarContent = `<td id="playerStatsTotalStar">
+          ${childSnapshot.child("totalStar").val()}
+          </td>`;
+
+          ////active status
+
+          console.log(`my status: ${childSnapshot.child("status").val()}`);
+          var status = "Offline";
+          if(childSnapshot.child("status").val() == true){
+            status = 'Online'
+          }
+          else{
+            status = 'Offline'
+          }
+          //adding data into 'content'
+          myStatusContent = `
+          ${status}
+          `;
+        }
+      });
+      //update our table content
+      playerName.innerHTML = playerNamecontent;
+      playerStatsTotalScore.innerHTML = playerStatsTotalScoreContent;
+      playerStatsTotalStar.innerHTML = playerStatsTotalStarContent;
+      myStatus.innerHTML = myStatusContent;
+      updateStatisticNotfication.innerHTML = updateStatisticNotficationContent;
+
+      
+      
+    } catch (error) {
+      console.log("Error getPlayerData" + error);
+    }
+  }
+  else
+  {
+    console.log("No playerstat" + error);
+  }
+
+});
+
 }
