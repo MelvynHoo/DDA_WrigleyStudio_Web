@@ -103,6 +103,13 @@ function getPlayerData() {
         var playerUsername = document.getElementById("playerUserName");
         var content = `<p class ="name" style="color:white; font-weight: bold;"> *No player Name
         </p>`;
+
+        var playerGender = document.getElementById("playerGender");
+        var playerGenderContent = "";
+
+        var playerAge = document.getElementById("playerAge");
+        var playerAgeContent = "";
+
         snapshot.forEach((childSnapshot) => {
           //looping through each snapshot
           //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
@@ -116,10 +123,22 @@ function getPlayerData() {
             content = `<p class ="name" style="font-weight: bold; color:white;"> Welcome Back,
             ${childSnapshot.child("userName").val()}
             </p>`;
+
+            //adding data into 'content'
+            playerGenderContent += `<td id="playerGender">
+            ${childSnapshot.child("gender").val()}
+            </td>`;
+
+            //adding data into 'content'
+            playerAgeContent += `<td id="playerAge">
+            ${childSnapshot.child("age").val()}
+            </td>`;
           }
         });
         //update our table content
         playerUsername.innerHTML = content;
+        playerAge.innerHTML = playerAgeContent;
+        playerGender.innerHTML = playerGenderContent;
       } catch (error) {
         console.log("Error getPlayerData" + error);
       }
@@ -172,9 +191,6 @@ function getPlayerData() {
             //${childSnapshot.child("userName").val()}
             //</p>`;
 
-            ////box deliver
-            console.log(`no. boxes delivered found: ${childSnapshot.child("noOfboxDelivered").val()}`);
-
             //adding data into 'content'
             playerStatsTotalScoreContent += `<td id="playerStatsTotalScore">
             ${childSnapshot.child("totalScore").val()}
@@ -182,9 +198,7 @@ function getPlayerData() {
             
             //update our table content
             //highestScore.innerHTML = content;
-            
-            ////money earned
-            console.log(`highest money earned found: ${childSnapshot.child("noOfMoneyEarned").val()}`);
+          
             
             //adding data into 'content'
             playerStatsTotalStarContent += `<td id="playerStatsTotalStar">
