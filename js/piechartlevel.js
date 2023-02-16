@@ -103,7 +103,7 @@ function UpdatePieChart(){
                 levelTwoCompletion += 0;
             }
 
-            if (item.allLevelCompletion == true)
+            if (item.allLevelComplete == true)
             {
                 allLevelCompletion += 1;
             }
@@ -122,8 +122,8 @@ function UpdatePieChart(){
                 labels: ["Level One", "Level Two", "All Level"],
                 datasets: [{
                 data: [levelOneCompletion, levelTwoCompletion, allLevelCompletion],
-                backgroundColor: ['#1E40A4', '#005C18', '#0073A8'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                backgroundColor: ['#1E40A4', '#005C18', '#B10E0E'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#db1111'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
             },

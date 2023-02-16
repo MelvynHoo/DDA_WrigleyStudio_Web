@@ -132,6 +132,10 @@ body {
   border-left:0.25rem solid #3DC2FF  !important;
 }
 
+.my-red-text{
+  color: #B10E0E !important;
+}
+
 
 .my-bg-login{
   background-color: #0f0566 !important;
