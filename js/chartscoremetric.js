@@ -168,7 +168,7 @@ function UpdateTimeChart(){
                 NoOfPlayerfor1000 += 1;
             }
 
-            else if (item.totalScore > 1000)
+            else if (item.totalScore >= 1000)
             {
                 NoOfPlayerfor1001 += 1;
             }
@@ -183,7 +183,7 @@ function UpdateTimeChart(){
             var myLineChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["0", "<100", "<200", "<300", "<400", "<500", "<600", "<700", "<800", "<900", "<1000", ">1000"],
+                labels: ["0", "<100", "<200", "<300", "<400", "<500", "<600", "<700", "<800", "<900", "<1000", "≥1000"],
                 datasets: [{
                 label: "No. Of Players",
                 lineTension: 0.3,
