@@ -26,7 +26,7 @@ const players = ref(db,"players")
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in dashboard: " + myData);
+console.log("MY UUID for Dashboard:  " + myData);
 
 // This function allow us to display and calculate the overall score and stars from the firebase database.
 // In addition, getting how many active users and registered user in the game and website

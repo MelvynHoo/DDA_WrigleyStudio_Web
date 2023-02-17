@@ -32,7 +32,7 @@ const gameCompletion = ref(db, "gameCompletion");
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in refreshpage: " + myData);
+console.log("MY UUID for Pie Chart: " + myData);
 
 // RefreshData that allow the data to be refresh every 20 seconds to a new data from the firebase.
 function refreshData(){

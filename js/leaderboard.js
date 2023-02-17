@@ -26,7 +26,7 @@ const user = auth.CurrentUser;
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in leaderboard: " + myData);
+console.log("MY UUID for Leaderboard:  " + myData);
 
 var limit = 10;
 // The function below to getting the leaderbaords datasbase from fireabase

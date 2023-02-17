@@ -29,7 +29,7 @@ const gameCompletion = ref(db, "gameCompletion");
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in refreshpage: " + myData);
+console.log("MY UUID for Refresh Data:  " + myData);
 
 var limit = 10;
 // Call the function ever 5 five seconds
@@ -245,7 +245,7 @@ get(playerStats).then((snapshot) => { //retrieve a snapshot of the data using a 
         if (userKey == myData) {
 
           ////display name
-          console.log(`username of playerStats found: ${childSnapshot.child("userName").val()}`);
+          //console.log(`username of playerStats found: ${childSnapshot.child("userName").val()}`);
 
           //adding data into 'content'
           playerNamecontent = `<td id="userName">
@@ -273,7 +273,7 @@ get(playerStats).then((snapshot) => { //retrieve a snapshot of the data using a 
 
           ////active status
 
-          console.log(`my status: ${childSnapshot.child("status").val()}`);
+          //console.log(`my status: ${childSnapshot.child("status").val()}`);
           var status = "Offline";
           if(childSnapshot.child("status").val() == true){
             status = 'Online'

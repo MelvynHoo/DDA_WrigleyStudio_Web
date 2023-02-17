@@ -32,7 +32,7 @@ const gameCompletion = ref(db, "gameCompletion");
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in refreshpage: " + myData);
+console.log("MY UUID for Line Chart:  " + myData);
 
 //Number format from the bootstrap template for the graph
 function number_format(number, decimals, dec_point, thousands_sep) {

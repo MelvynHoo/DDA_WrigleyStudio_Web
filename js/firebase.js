@@ -33,7 +33,7 @@ const leaderboard = ref(db, "leaderBoards");
 
 //Retrieve from login
 var myData = sessionStorage.getItem('UUID');
-console.log("this is my data in firebase: " + myData);
+console.log("MY UUID for Firebase: " + myData);
 
 var limit = 1;
 
@@ -123,7 +123,7 @@ function getPlayerData() {
           //console.log(`compare ${childSnapshot.key}:SUbyQ9LeZjb2MzjIKIC7wEWvxLW2`)
           let userKey = (childSnapshot.key).trim();
           if (userKey == myData) {
-            console.log(`username of player found: ${childSnapshot.child("userName").val()}`);
+            console.log(`Username of player found: ${childSnapshot.child("userName").val()}`);
             
             content = `<p class ="name" style="font-weight: bold; color:white;"> Welcome Back,
             ${childSnapshot.child("userName").val()}
@@ -185,7 +185,7 @@ function getPlayerData() {
           if (userKey == myData) {
 
             ////display name
-            console.log(`username of playerStats found: ${childSnapshot.child("userName").val()}`);
+            console.log(`Username of playerStats found: ${childSnapshot.child("userName").val()}`);
 
             //adding data into 'content'
             playerNamecontent += `<td id="userName">
@@ -213,7 +213,7 @@ function getPlayerData() {
 
             ////active status
 
-            console.log(`my status: ${childSnapshot.child("status").val()}`);
+            //console.log(`my status: ${childSnapshot.child("status").val()}`);
             var status = "Offline";
             if(childSnapshot.child("status").val() == true){
               status = 'Online'
