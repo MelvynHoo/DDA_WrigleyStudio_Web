@@ -103,7 +103,7 @@ function UpdatePieChart(){
                 levelTwoCompletion += 0;
             }
 
-            if (item.allLevelComplete == true)
+            if (item.allLevelCompletion == true)
             {
                 allLevelCompletion += 1;
             }
