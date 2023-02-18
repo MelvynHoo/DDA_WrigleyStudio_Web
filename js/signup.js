@@ -111,7 +111,7 @@ function createUser(email, password, displayname, gender, age) {
       userName: displayname,
       levelOneCompletion: false, // change value for testing
       levelTwoCompletion: false, // change value for testing
-      allLevelComplete: false, // change value for testing
+      allLevelCompletion: false, // change value for testing
     }
 
     // When the user successfully sign up, the following data will be generate in the firebase

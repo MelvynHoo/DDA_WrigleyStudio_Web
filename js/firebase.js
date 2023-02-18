@@ -67,7 +67,7 @@ function UpdatePlayerStats(){
       updatedOn: currentTimestamp
     });
     update(ref(db, "gameCompletion/" + myData),{
-      allLevelComplete: false,
+      allLevelCompletion: false,
       levelOneCompletion: false,
       levelTwoCompletion: false
     });
